@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rimsha! 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&family=Pinyon+Script&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-white: #fafafa;
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --reveal-time: 1s;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+        .tap-particle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            z-index: 9999;
+            animation: floatUp 1s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(1.2); opacity: 0; }
+        }
+        .audio-container {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); border: 1px solid var(--gold-primary);
+            padding: 10px 15px; border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .audio-btn {
+            background: var(--gold-gradient); border: none; color: white;
+            width: 35px; height: 35px; border-radius: 50%;
+            cursor: pointer; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+        }
+        header {
+            position: relative; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 50%, #f9f6f0 50%);
+            border-bottom: 5px solid var(--gold-primary);
+            transition: background var(--reveal-time) ease;
+        }
+        .hero-content h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; letter-spacing: 4px; color: var(--text-dark); margin-bottom: 10px; }
+        .hero-content .cursive {
+            font-family: 'Pinyon Script', cursive; font-size: 4.5rem;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: block; margin-bottom: 20px;
+        }
+        #countdown-section { transition: opacity var(--reveal-time) ease, transform var(--reveal-time) ease; }
+        .countdown-container { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .time-box {
+            background: #ffffff; border: 1px solid var(--gold-primary);
+            padding: 15px 20px; border-radius: 8px; min-width: 80px;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.1);
+        }
+        .time-box span { display: block; font-size: 2rem; font-weight: 600; color: var(--gold-primary); }
+        .time-box label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        #midnight-reveal {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; z-index: 10;
+            transition: opacity var(--reveal-time) ease 0.5s;
+        }
+        .midnight-letter {
+            background: rgba(255, 255, 255, 0.97); border: 2px solid var(--gold-primary);
+            padding: 50px; border-radius: 10px; max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative;
+            transform: translateY(30px); transition: transform var(--reveal-time) ease 0.7s;
+        }
+        .midnight-title { font-family: 'Cinzel', serif; color: var(--gold-primary); font-size: 1.8rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .midnight-body { font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); white-space: pre-line; margin-bottom: 25px; }
+        header.revealed #countdown-section { opacity: 0; visibility: hidden; transform: translateY(-30px); pointer-events: none; }
+        header.revealed #midnight-reveal { opacity: 1; visibility: visible; }
+        header.revealed #midnight-reveal .midnight-letter { transform: translateY(0); }
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-family: 'Cinzel', serif; font-size: 2.2rem; margin-bottom: 50px; position: relative; letter-spacing: 2px; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 2px; background: var(--gold-gradient); margin: 15px auto 0; }
+        .message-box {
+            background: #ffffff; border-left: 5px solid var(--gold-primary);
+            padding: 40px; border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); text-align: center;
+            max-width: 800px; margin: 0 auto;
+        }
+        .message-box p { font-size: 1.15rem; line-height: 1.9; color: var(--text-dark); white-space: pre-line; }
+        .signature { margin-top: 25px; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-primary); font-weight: 600; }
+        .cake-container { text-align: center; margin: 40px auto 0; max-width: 300px; }
+        .cake-svg { width: 120px; height: auto; cursor: pointer; transition: transform 0.3s; }
+        .cake-svg:hover { transform: scale(1.05); }
+        .flame { fill: #ffbc42; transition: opacity 0.5s ease; }
+        .flame.blown-out { opacity: 0; }
+        .cake-btn {
+            background: var(--gold-gradient); color: white; border: none;
+            padding: 10px 20px; font-weight: 600; border-radius: 20px;
+            margin-top: 15px; cursor: pointer; font-size: 0.9rem; letter-spacing: 1px;
+        }
+        #wish-status { font-style: italic; color: var(--gold-primary); font-weight: 600; margin-top: 10px; font-size: 0.95rem; min-height: 20px; }
+        .story-box { background: #ffffff; max-width: 800px; margin: 0 auto; padding: 40px; border-radius: 8px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.02); text-align: center; }
+        .story-box p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); }
+        .gallery-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+        .polaroid {
+            background: #ffffff; padding: 15px 15px 25px 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); border: 1px solid rgba(212, 175, 55, 0.2);
+            max-width: 240px; transition: transform 0.3s ease; text-align: center;
+        }
+        .polaroid:hover { transform: scale(1.03) rotate(0deg) !important; z-index: 10; }
+        .polaroid:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(2) { transform: rotate(2deg); }
+        .polaroid:nth-child(3) { transform: rotate(-1deg); }
+        .polaroid:nth-child(4) { transform: rotate(3deg); }
+        .polaroid:nth-child(5) { transform: rotate(-2deg); }
+        .polaroid-img-wrapper {
+            width: 210px; height: 210px; background-color: #f6f4eb;
+            overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .polaroid img { width: 100%; height: 100%; object-fit: cover; }
+        .polaroid-caption {
+            font-family: 'Reenie Beanie', cursive; font-size: 1.8rem;
+            color: #333; margin-top: 12px; display: block; line-height: 1;
+        }
+        .guestbook-container { max-width: 700px; margin: 0 auto; }
+        .message-form { display: flex; flex-direction: column; gap: 15px; background: #ffffff; padding: 30px; border-radius: 8px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-bottom: 40px; }
+        .message-form input, .message-form textarea { padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; }
+        .message-form button { background: var(--gold-gradient); color: white; border: none; padding: 12px; font-size: 1rem; font-weight: 600; border-radius: 4px; cursor: pointer; letter-spacing: 1px; }
+        .user-note { background: #ffffff; padding: 20px; border-radius: 6px; border-left: 3px solid var(--gold-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 15px;}
+        .user-note p { font-size: 0.95rem; margin-bottom: 5px; line-height: 1.5; }
+        .user-note span { font-size: 0.8rem; font-weight: 600; color: var(--gold-primary); }
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; opacity: 0; transition: opacity var(--reveal-time) ease; }
+        body.revealing #confetti-canvas { opacity: 1; }
+        footer { text-align: center; padding: 40px 20px; background: #111; color: #fff; font-size: 0.9rem; letter-spacing: 1px; }
+        footer span { color: var(--gold-primary); }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.3rem; }
+            .hero-content .cursive { font-size: 3.2rem; }
+            .countdown-container { gap: 10px; }
+            .time-box { min-width: 65px; padding: 10px; }
+            .time-box span { font-size: 1.5rem; }
+            .midnight-letter { padding: 30px; max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="audio-container" id="music-player">
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-dark);">I Wanna Be Yours</span>
+            <span style="font-size: 0.7rem; color: var(--text-muted);">Arctic Monkeys</span>
+        </div>
+        <audio id="bg-music" loop src="music.mp3.mpeg"></audio>
+        <button class="audio-btn" id="music-toggle" onclick="toggleMusic()">▶</button>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <header id="hero-header">
+        <div class="hero-content" id="countdown-section">
+            <h1>HAPPY BIRTHDAY</h1>
+            <span class="cursive">Rimsha 🤍</span>
+            <p style="letter-spacing: 3px; font-weight: 300; color: var(--text-muted);">YOU MEAN THE WORLD TO ME</p>
+            <div class="countdown-container">
+                <div class="time-box"><span id="days">00</span><label>Days</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+            </div>
+        </div>
+
+        <div id="midnight-reveal">
+            <div class="midnight-letter">
+                <h2 class="midnight-title">Look at the clock, beautiful.</h2>
+                <p class="midnight-body">It is officially May 30th. I am the very first person to wish you.
+
+                May this year ahead be filled with as much joy, light, and happiness as you bring into my life every single day. I adore you. ❤️</p>
+                <div class="signature">— Your Taimoor 🤍</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="special-message">
+        <h2 class="section-title">My Message For You</h2>
+        <div class="message-box">
+            <p>Happiest birthday to the most beautiful girl I have ever seen you truly are an amazing person 💕🫂.
+
+            May your day be as bright as you're. Always smile be happy enjoy your day. I think you are truly the one missing puzzle I was looking for to complete myself.
+
+            I adore you respect you and want you to be happy forever beautiful ❤️🥺. Follow your dreams and live the life the way you want to but don't forget me 😭 
+
+            Once again happy birthday Rimsha 🤍 you mean a world to me.</p>
+            <div class="signature">— From Taimoor 🤍</div>
+        </div>
+
+        <div class="cake-container">
+            <svg class="cake-svg" id="bday-cake" onclick="blowCandle()" viewBox="0 0 100 100">
+                <path class="flame" id="candle-flame" d="M50,15 C45,25 48,32 50,35 C52,32 55,25 50,15 Z" />
+                <rect x="48" y="35" width="4" height="15" fill="#f3e5ab" />
+                <rect x="25" y="50" width="50" height="20" rx="5" fill="#d4af37" />
+                <path d="M25,55 Q30,60 35,55 Q40,60 45,55 Q50,60 55,55 Q60,60 65,55 Q70,60 75,55 L75,50 L25,50 Z" fill="#ffffff" />
+                <rect x="15" y="70" width="70" height="20" rx="5" fill="#aa7c11" />
+                <path d="M15,75 Q22,80 29,75 Q36,80 43,75 Q50,80 57,75 Q64,80 71,75 Q78,80 85,75 L85,70 L15,70 Z" fill="#ffffff" />
+            </svg>
+            <br>
+            <button class="cake-btn" id="cake-action-btn" onclick="blowCandle()">Blow out the candle 🎂</button>
+            <div id="wish-status"></div>
+        </div>
+    </section>
+
+    <section id="our-story">
+        <h2 class="section-title">Our Story</h2>
+        <div class="story-box">
+            <p>We met in the most unexpected way but still I remember the first time we talked. I was very nervous—and honestly, I still am while writing this because I don't have words to adequately describe you and your existence. I will always cherish every single moment that I have had with you so far. ✨</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Memories Gallery</h2>
+        <div class="gallery-grid">
+            <div class="polaroid">
+                <div class="polaroid-img-wrapper"><img src="pic1.jpeg" alt="Memory 1"></div>
+                <span class="polaroid-caption">That gorgeous smile...</span>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img-wrapper"><img src="pic2.jpeg" alt="Memory 2"></div>
+                <span class="polaroid-caption">A favorite memory ✨</span>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img-wrapper"><img src="pic3.jpeg" alt="Memory 3"></div>
+                <span class="polaroid-caption">Pure happiness 🤍</span>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img-wrapper"><img src="pic4.jpeg" alt="Memory 4"></div>
+                <span class="polaroid-caption">Unforgettable days</span>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img-wrapper"><img src="pic5.jpeg" alt="Memory 5"></div>
+                <span class="polaroid-caption">Forever cherish this</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="messages">
+        <h2 class="section-title">Wishes Hub</h2>
+        <div class="guestbook-container">
+            <form class="message-form" id="wish-form">
+                <input type="text" id="user-name" placeholder="Your Name" required>
+                <textarea id="user-text" rows="4" placeholder="Write your lovely birthday wish here..." required></textarea>
+                <button type="submit">Send Wish ✨</button>
+            </form>
+            <div class="live-messages" id="messages-container"></div>
+        </div>
+    </section>
+
+    <footer><p>Made with <span>♥</span> by Taimoor for Rimsha.</p></footer>
+
+    <script>
+        // 1. TAP EFFECT (FLOWERS/HEARTS)
+        const pool = ['🤍', '🌸', '💮', '🌼'];
+        document.addEventListener('click', function(e) {
+            if(e.target.tagName === 'BUTTON' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.closest('svg')) return;
+            for(let i=0; i<4; i++) {
+                const element = document.createElement('div');
+                element.classList.add('tap-particle');
+                element.innerText = pool[Math.floor(Math.random() * pool.length)];
+                element.style.left = e.pageX + 'px';
+                element.style.top = e.pageY + 'px';
+                document.body.appendChild(element);
+                setTimeout(() => { element.remove(); }, 1000);
+            }
+        });
+
+        // 2. BLOW CANDLE & CAKE
+        let candleBlown = false;
+        function blowCandle() {
+            if(candleBlown) return;
+            candleBlown = true;
+            document.getElementById('candle-flame').classList.add('blown-out');
+            document.getElementById('cake-action-btn').style.display = 'none';
+            document.getElementById('wish-status').innerText = "Your wish has been sent to the universe. May all your dreams come true, Rimsha. ✨";
+            triggerConfetti();
+        }
+
+        // 3. BACKGROUND MUSIC
+        const audio = document.getElementById('bg-music');
+        const toggleBtn = document.getElementById('music-toggle');
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().catch(err => alert("Please interact with the page first to play music!"));
+                toggleBtn.innerText = "⏸";
+            } else {
+                audio.pause();
+                toggleBtn.innerText = "▶";
+            }
+        }
+
+        // 4. ACTIVE COUNTDOWN LOGIC
+        const targetDate = new Date("May 30, 2026 00:00:00").getTime();
+        let isRevealed = false;
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            let distance = targetDate - now;
+
+            if (distance <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                
+                if (!isRevealed) {
+                    isRevealed = true;
+                    document.getElementById("hero-header").classList.add("revealed");
+                    document.body.classList.add("revealing");
+                    triggerConfetti();
+                }
+                return;
+            }
+
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // 5. GUESTBOOK
+        const wishForm = document.getElementById('wish-form');
+        const messagesContainer = document.getElementById('messages-container');
+        wishForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('user-name');
+            const textInput = document.getElementById('user-text');
+            if(nameInput.value.trim() === "" || textInput.value.trim() === "") return;
+            const noteDiv = document.createElement('div');
+            noteDiv.classList.add('user-note');
+            noteDiv.innerHTML = `<p>"${textInput.value}"</p><span>— With love, ${nameInput.value}</span>`;
+            messagesContainer.prepend(noteDiv);
+            nameInput.value = "";
+            textInput.value = "";
+        });
+
+        // 6. CONFETTI EFFECT (COMPLETED)
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        let confettiParticles = [];
+        let confettiActive = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.w = Math.random() * 10 + 5;
+                this.h = Math.random() * 5 + 5;
+                this.dx = Math.random() * 4 - 2;
+                this.dy = Math.random() * 3 + 2;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                this.tilt = Math.floor(Math.random() * 10) - 10;
+                this.tiltAngle = 0;
+                this.tiltAngleInc = (Math.random() * 0.07) + 0.05;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.lineWidth = this.w;
+                ctx.strokeStyle = this.color;
+                ctx.moveTo(this.x + this.tilt + this.w, this.y);
+                ctx.lineTo(this.x + this.tilt, this.y + this.h);
+                ctx.stroke();
+            }
+            update() {
+                this.tiltAngle += this.tiltAngleInc;
+                this.y += this.dy;
+                this.x += Math.sin(this.tiltAngle) * 2;
+                this.tilt = Math.sin(this.tiltAngle) * 15;
+                
+                // Reset particle to top if it goes off screen
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        function triggerConfetti() {
+            if (confettiActive) return;
+            confettiActive = true;
+            for (let i = 0; i < 150; i++) {
+                confettiParticles.push(new Particle());
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            requestAnimationFrame(animateConfetti);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiParticles.forEach(p => p.update());
+        }
+    </script>
+</body>
+</html>
